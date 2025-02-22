@@ -3,6 +3,9 @@ package com.ekcapaper.softwareaccountbackend.controller;
 import com.ekcapaper.softwareaccountbackend.model.dto.TechnicalRelationshipDTO;
 import com.ekcapaper.softwareaccountbackend.model.entity.TechnicalType;
 import com.ekcapaper.softwareaccountbackend.service.TechnicalRelationshipService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +20,30 @@ public class TechnicalRelationshipController {
     private final TechnicalRelationshipService relationshipService;
 
     // 특정 상황에서 어떤 결정이 내려졌는지 조회
+    @Operation(summary = "특정 상황에서 어떤 결정이 내려졌는지 조회", description = "특정 상황에서 어떤 결정이 내려졌는지 조회")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 조회됨")
+    })
     @GetMapping("/context/{contextId}")
     public ResponseEntity<List<TechnicalRelationshipDTO>> getDecisionsByContext(@PathVariable Long contextId) {
         return ResponseEntity.ok(relationshipService.getDecisionsByContextId(contextId));
     }
 
     // 특정 결정이 어떤 새로운 상황을 만들었는지 조회
+    @Operation(summary = "특정 결정이 어떤 새로운 상황을 만들었는지 조회", description = "특정 결정이 어떤 새로운 상황을 만들었는지 조회")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 조회됨")
+    })
     @GetMapping("/decision/{decisionId}")
     public ResponseEntity<List<TechnicalRelationshipDTO>> getNewContextsByDecision(@PathVariable Long decisionId) {
         return ResponseEntity.ok(relationshipService.getNewContextsByDecisionId(decisionId));
     }
 
     // 새로운 관계 추가
+    @Operation(summary = "새로운 관계 추가", description = "새로운 관계 추가")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 조회됨")
+    })
     @PostMapping
     public ResponseEntity<TechnicalRelationshipDTO> addRelationship(
             @RequestParam Long sourceId,
@@ -39,6 +54,10 @@ public class TechnicalRelationshipController {
     }
 
     // 관계 삭제
+    @Operation(summary = "관계 삭제", description = "관계 삭제")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "성공적으로 삭제됨")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRelationship(@PathVariable Long id) {
         relationshipService.deleteRelationship(id);
