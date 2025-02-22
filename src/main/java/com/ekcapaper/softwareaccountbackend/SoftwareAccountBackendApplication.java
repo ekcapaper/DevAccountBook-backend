@@ -1,4 +1,4 @@
-package com.example.softwareaccountbackend;
+package com.ekcapaper.softwareaccountbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

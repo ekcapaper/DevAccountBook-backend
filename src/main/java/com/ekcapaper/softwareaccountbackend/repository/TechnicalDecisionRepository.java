@@ -1,7 +1,6 @@
-package com.example.softwareaccountbackend.repository;
+package com.ekcapaper.softwareaccountbackend.repository;
 
-import com.example.softwareaccountbackend.model.entity.TechnicalContext;
-import com.example.softwareaccountbackend.model.entity.TechnicalDecision;
+import com.ekcapaper.softwareaccountbackend.model.entity.TechnicalDecision;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

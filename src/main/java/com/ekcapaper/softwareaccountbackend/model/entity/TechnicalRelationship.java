@@ -1,4 +1,4 @@
-package com.example.softwareaccountbackend.model.entity;
+package com.ekcapaper.softwareaccountbackend.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

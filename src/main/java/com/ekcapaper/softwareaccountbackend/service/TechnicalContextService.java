@@ -1,7 +1,7 @@
-package com.example.softwareaccountbackend.service;
+package com.ekcapaper.softwareaccountbackend.service;
 
-import com.example.softwareaccountbackend.model.entity.TechnicalContext;
-import com.example.softwareaccountbackend.repository.TechnicalContextRepository;
+import com.ekcapaper.softwareaccountbackend.model.entity.TechnicalContext;
+import com.ekcapaper.softwareaccountbackend.repository.TechnicalContextRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

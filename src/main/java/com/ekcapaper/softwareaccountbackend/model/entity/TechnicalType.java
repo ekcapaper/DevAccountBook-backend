@@ -1,4 +1,4 @@
-package com.example.softwareaccountbackend.model.entity;
+package com.ekcapaper.softwareaccountbackend.model.entity;
 
 public enum TechnicalType {
     CONTEXT,  // 기술적 상황

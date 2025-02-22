@@ -1,8 +1,8 @@
-package com.example.softwareaccountbackend.service;
+package com.ekcapaper.softwareaccountbackend.service;
 
-import com.example.softwareaccountbackend.model.entity.TechnicalRelationship;
-import com.example.softwareaccountbackend.model.entity.TechnicalType;
-import com.example.softwareaccountbackend.repository.TechnicalRelationshipRepository;
+import com.ekcapaper.softwareaccountbackend.model.entity.TechnicalRelationship;
+import com.ekcapaper.softwareaccountbackend.model.entity.TechnicalType;
+import com.ekcapaper.softwareaccountbackend.repository.TechnicalRelationshipRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
