@@ -1,5 +1,6 @@
 package com.ekcapaper.softwareledgerbackend.service;
 
+import com.ekcapaper.softwareledgerbackend.model.dto.SoftwareAssetDTO;
 import com.ekcapaper.softwareledgerbackend.model.entity.SoftwareAsset;
 import com.ekcapaper.softwareledgerbackend.repository.SoftwareAssetRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,36 +9,37 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class SoftwareAssetService {
 
     private final SoftwareAssetRepository assetRepository;
 
-    /**
-     * 모든 소프트웨어 자산을 조회합니다.
-     */
-    public List<SoftwareAsset> getAllAssets() {
-        return assetRepository.findAll();
+    public List<SoftwareAssetDTO> getAllAssets() {
+        return assetRepository.findAll()
+                .stream()
+                .map(asset -> new SoftwareAssetDTO(asset.getId(), asset.getName(), asset.getDescription()))
+                .collect(Collectors.toList());
     }
 
-    /**
-     * ID로 특정 소프트웨어 자산을 조회합니다.
-     */
-    public Optional<SoftwareAsset> getAssetById(Long id) {
-        return assetRepository.findById(id);
+    public Optional<SoftwareAssetDTO> getAssetById(Long id) {
+        return assetRepository.findById(id)
+                .map(asset -> new SoftwareAssetDTO(asset.getId(), asset.getName(), asset.getDescription()));
     }
 
-    /**
-     * 새로운 소프트웨어 자산을 추가합니다.
-     */
-    public SoftwareAsset createAsset(SoftwareAsset asset) {
-        return assetRepository.save(asset);
+    public SoftwareAssetDTO createAsset(SoftwareAssetDTO assetDTO) {
+        SoftwareAsset asset = new SoftwareAsset();
+        asset.setName(assetDTO.getName());
+        asset.setDescription(assetDTO.getDescription());
+
+        SoftwareAsset savedAsset = assetRepository.save(asset);
+        return new SoftwareAssetDTO(savedAsset.getId(), savedAsset.getName(), savedAsset.getDescription());
     }
 
-    /**
-     * ID를 기반으로 소프트웨어 자산을 삭제합니다.
-     */
     public void deleteAsset(Long id) {
         assetRepository.deleteById(id);
     }
