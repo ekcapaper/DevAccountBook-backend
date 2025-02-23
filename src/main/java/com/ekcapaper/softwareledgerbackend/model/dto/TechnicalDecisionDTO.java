@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class TechnicalDecisionDTO {
     private Long id;
-    private String decision;
-    private String impact;
+    private String name;
+    private String description;
 }

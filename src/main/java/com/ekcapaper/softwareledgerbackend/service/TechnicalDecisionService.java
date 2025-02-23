@@ -55,8 +55,8 @@ public class TechnicalDecisionService {
     private TechnicalDecisionDTO convertToDTO(TechnicalDecision decision) {
         TechnicalDecisionDTO dto = new TechnicalDecisionDTO();
         dto.setId(decision.getId());
-        dto.setDecision(decision.getName());
-        dto.setImpact(decision.getDescription());
+        dto.setName(decision.getName());
+        dto.setDescription(decision.getDescription());
         return dto;
     }
 }
