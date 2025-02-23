@@ -1,9 +1,9 @@
 spring:
   application:
-    name: softwareaccountbackend
+    name: softwareledgerbackend
 
   datasource:
-    url: jdbc:h2:file:./data/software_account_db
+    url: jdbc:h2:file:./data/software_ledger_db
     driver-class-name: org.h2.Driver
     username: sa
     password:
