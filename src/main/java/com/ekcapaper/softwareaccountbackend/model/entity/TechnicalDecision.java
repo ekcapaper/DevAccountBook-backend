@@ -16,8 +16,8 @@ public class TechnicalDecision {
     private Long id;
 
     @Column(nullable = false)
-    private String decision;  // 의사결정 내용
+    private String name;  // 의사결정 내용
 
     @Column(columnDefinition = "TEXT")
-    private String impact;  // 결정이 미친 영향
+    private String description;  // 결정이 미친 영향
 }

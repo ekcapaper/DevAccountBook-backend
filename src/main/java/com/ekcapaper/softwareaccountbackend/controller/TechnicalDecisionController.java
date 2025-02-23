@@ -50,8 +50,8 @@ public class TechnicalDecisionController {
     @PostMapping
     public ResponseEntity<TechnicalDecisionDTO> createDecision(@RequestBody TechnicalDecisionDTO decisionDTO) {
         TechnicalDecision decision = new TechnicalDecision();
-        decision.setDecision(decisionDTO.getDecision());
-        decision.setImpact(decisionDTO.getImpact());
+        decision.setName(decisionDTO.getDecision());
+        decision.setDescription(decisionDTO.getImpact());
         return ResponseEntity.ok(decisionService.createDecision(decision));
     }
 
@@ -63,8 +63,8 @@ public class TechnicalDecisionController {
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalDecisionDTO> updateDecision(@PathVariable Long id, @RequestBody TechnicalDecisionDTO decisionDTO) {
         TechnicalDecision decision = new TechnicalDecision();
-        decision.setDecision(decisionDTO.getDecision());
-        decision.setImpact(decisionDTO.getImpact());
+        decision.setName(decisionDTO.getDecision());
+        decision.setDescription(decisionDTO.getImpact());
         return ResponseEntity.ok(decisionService.updateDecision(id, decision));
     }
 

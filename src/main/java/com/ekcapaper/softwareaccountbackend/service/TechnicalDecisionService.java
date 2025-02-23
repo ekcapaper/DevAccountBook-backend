@@ -39,8 +39,8 @@ public class TechnicalDecisionService {
     public TechnicalDecisionDTO updateDecision(Long id, TechnicalDecision updatedDecision) {
         return decisionRepository.findById(id)
                 .map(existingDecision -> {
-                    existingDecision.setDecision(updatedDecision.getDecision());
-                    existingDecision.setImpact(updatedDecision.getImpact());
+                    existingDecision.setName(updatedDecision.getName());
+                    existingDecision.setDescription(updatedDecision.getDescription());
                     return convertToDTO(decisionRepository.save(existingDecision));
                 })
                 .orElseThrow(() -> new RuntimeException("Technical Decision not found"));
@@ -55,8 +55,8 @@ public class TechnicalDecisionService {
     private TechnicalDecisionDTO convertToDTO(TechnicalDecision decision) {
         TechnicalDecisionDTO dto = new TechnicalDecisionDTO();
         dto.setId(decision.getId());
-        dto.setDecision(decision.getDecision());
-        dto.setImpact(decision.getImpact());
+        dto.setDecision(decision.getName());
+        dto.setImpact(decision.getDescription());
         return dto;
     }
 }
