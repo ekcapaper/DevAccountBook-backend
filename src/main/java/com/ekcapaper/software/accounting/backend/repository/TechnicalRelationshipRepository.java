@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TechnicalRelationshipRepository extends JpaRepository<TechnicalRelationship, Long> {
-    List<TechnicalRelationship> findBySourceId(Long sourceId);
-    List<TechnicalRelationship> findByTargetId(Long targetId);
+    List<TechnicalRelationship> findByTechnicalContextId(Long technicalContextId);
+    List<TechnicalRelationship> findByTechnicalDecisionId(Long technicalDecisionId);
 }

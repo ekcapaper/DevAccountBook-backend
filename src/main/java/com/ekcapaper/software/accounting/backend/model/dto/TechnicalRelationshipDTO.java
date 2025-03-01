@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TechnicalRelationshipDTO {
-    private Long sourceId;
-    private Long targetId;
+    private Long id;
+    private Long technicalContextId;
+    private Long technicalDecisionId;
 }
