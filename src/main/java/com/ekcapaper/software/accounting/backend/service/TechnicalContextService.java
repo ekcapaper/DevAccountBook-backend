@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.converter.TechnicalContextConverter;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.TechnicalContext;
 import com.ekcapaper.software.accounting.backend.repository.TechnicalContextRepository;
@@ -16,22 +17,24 @@ import java.util.stream.Collectors;
 public class TechnicalContextService {
 
     private final TechnicalContextRepository contextRepository;
+    private final TechnicalContextConverter technicalContextConverter;
 
     // 모든 기술적 상황 조회 (DTO 변환)
     public List<TechnicalContextDTO> getAllContexts() {
+
         return contextRepository.findAll().stream()
-                .map(this::convertToDTO)
+                .map(technicalContextConverter::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     // 특정 기술적 상황 조회 (DTO 변환)
     public Optional<TechnicalContextDTO> getContextById(Long id) {
-        return contextRepository.findById(id).map(this::convertToDTO);
+        return contextRepository.findById(id).map(technicalContextConverter::convertToDTO);
     }
 
     // 새로운 기술적 상황 추가
     public TechnicalContextDTO createContext(TechnicalContext context) {
-        return convertToDTO(contextRepository.save(context));
+        return technicalContextConverter.convertToDTO(contextRepository.save(context));
     }
 
     // 기술적 상황 수정
@@ -41,7 +44,7 @@ public class TechnicalContextService {
                 .map(existingContext -> {
                     existingContext.setName(updatedContext.getName());
                     existingContext.setDescription(updatedContext.getDescription());
-                    return convertToDTO(contextRepository.save(existingContext));
+                    return technicalContextConverter.convertToDTO(contextRepository.save(existingContext));
                 })
                 .orElseThrow(() -> new RuntimeException("Technical Context not found"));
     }
@@ -49,14 +52,5 @@ public class TechnicalContextService {
     // 기술적 상황 삭제
     public void deleteContext(Long id) {
         contextRepository.deleteById(id);
-    }
-
-    // 엔티티 → DTO 변환 메서드
-    private TechnicalContextDTO convertToDTO(TechnicalContext context) {
-        TechnicalContextDTO dto = new TechnicalContextDTO();
-        dto.setId(context.getId());
-        dto.setName(context.getName());
-        dto.setDescription(context.getDescription());
-        return dto;
     }
 }

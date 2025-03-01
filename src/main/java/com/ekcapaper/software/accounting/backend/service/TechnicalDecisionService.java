@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.converter.TechnicalDecisionConverter;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.TechnicalDecision;
 import com.ekcapaper.software.accounting.backend.repository.TechnicalDecisionRepository;
@@ -14,24 +15,24 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TechnicalDecisionService {
-
+    private final TechnicalDecisionConverter technicalContextConverter;
     private final TechnicalDecisionRepository decisionRepository;
 
     // 모든 기술적 결정 조회 (DTO 변환)
     public List<TechnicalDecisionDTO> getAllDecisions() {
         return decisionRepository.findAll().stream()
-                .map(this::convertToDTO)
+                .map(technicalContextConverter::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     // 특정 기술적 결정 조회 (DTO 변환)
     public Optional<TechnicalDecisionDTO> getDecisionById(Long id) {
-        return decisionRepository.findById(id).map(this::convertToDTO);
+        return decisionRepository.findById(id).map(technicalContextConverter::convertToDTO);
     }
 
     // 새로운 기술적 결정 추가
     public TechnicalDecisionDTO createDecision(TechnicalDecision decision) {
-        return convertToDTO(decisionRepository.save(decision));
+        return technicalContextConverter.convertToDTO(decisionRepository.save(decision));
     }
 
     // 기술적 결정 수정
@@ -41,7 +42,7 @@ public class TechnicalDecisionService {
                 .map(existingDecision -> {
                     existingDecision.setName(updatedDecision.getName());
                     existingDecision.setDescription(updatedDecision.getDescription());
-                    return convertToDTO(decisionRepository.save(existingDecision));
+                    return technicalContextConverter.convertToDTO(decisionRepository.save(existingDecision));
                 })
                 .orElseThrow(() -> new RuntimeException("Technical Decision not found"));
     }
@@ -51,12 +52,5 @@ public class TechnicalDecisionService {
         decisionRepository.deleteById(id);
     }
 
-    // 엔티티 → DTO 변환 메서드
-    private TechnicalDecisionDTO convertToDTO(TechnicalDecision decision) {
-        TechnicalDecisionDTO dto = new TechnicalDecisionDTO();
-        dto.setId(decision.getId());
-        dto.setName(decision.getName());
-        dto.setDescription(decision.getDescription());
-        return dto;
-    }
+
 }
