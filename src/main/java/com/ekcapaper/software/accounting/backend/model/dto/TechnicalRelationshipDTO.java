@@ -8,7 +8,5 @@ import lombok.Setter;
 @Setter
 public class TechnicalRelationshipDTO {
     private Long sourceId;
-    private TechnicalType sourceType;
     private Long targetId;
-    private TechnicalType targetType;
 }
