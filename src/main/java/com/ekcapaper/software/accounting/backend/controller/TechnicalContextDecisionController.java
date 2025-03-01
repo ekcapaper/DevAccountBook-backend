@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/relationships")
+@RequestMapping("/api/technical/relationships")
 @RequiredArgsConstructor
 public class TechnicalContextDecisionController {
 

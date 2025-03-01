@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/contexts")
+@RequestMapping("/api/technical/contexts")
 @RequiredArgsConstructor
 public class TechnicalContextController {
     private final TechnicalContextService contextService;
