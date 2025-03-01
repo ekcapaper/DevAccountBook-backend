@@ -15,18 +15,11 @@ public class TechnicalRelationship {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long sourceId;  // 원인 (상황 or 결정)
+    @OneToOne
+    @JoinColumn(name = "technical_context_id")
+    private TechnicalContext technicalContext;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TechnicalType sourceType;  // CONTEXT or DECISION
-
-    @Column(nullable = false)
-    private Long targetId;  // 결과 (상황 or 결정)
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TechnicalType targetType;  // CONTEXT or DECISION
-
+    @OneToOne
+    @JoinColumn(name = "technical_decision_id")
+    private TechnicalDecision technicalDecision;
 }
