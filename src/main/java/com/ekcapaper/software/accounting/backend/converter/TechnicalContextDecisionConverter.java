@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class TechnicalContextDecisionConverter {
-    private TechnicalDecisionConverter technicalDecisionConverter;
-    private TechnicalContextConverter technicalContextConverter;
+    final private TechnicalDecisionConverter technicalDecisionConverter;
+    final private TechnicalContextConverter technicalContextConverter;
 
     public TechnicalContextDecisionDTO convertToDTO(TechnicalContextDecision relationship) {
         TechnicalContextDecisionDTO dto = new TechnicalContextDecisionDTO();

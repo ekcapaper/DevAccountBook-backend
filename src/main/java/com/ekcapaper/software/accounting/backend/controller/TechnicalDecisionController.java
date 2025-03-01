@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.TechnicalDecision;
 import com.ekcapaper.software.accounting.backend.service.TechnicalDecisionService;
@@ -54,7 +55,7 @@ public class TechnicalDecisionController {
     })
     @PostMapping
     public ResponseEntity<TechnicalDecisionDTO> createDecision(
-            @RequestBody TechnicalDecisionDTO decisionDTO) {
+            @RequestBody TechnicalDecisionCreateDTO decisionDTO) {
         TechnicalDecision decision = new TechnicalDecision();
         decision.setName(decisionDTO.getName());
         decision.setDescription(decisionDTO.getDescription());

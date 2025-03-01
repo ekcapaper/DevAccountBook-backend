@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.TechnicalContext;
 import com.ekcapaper.software.accounting.backend.service.TechnicalContextService;
@@ -28,7 +29,7 @@ public class TechnicalContextController {
                             schema = @Schema(implementation = TechnicalContextDTO.class)))
     })
     @GetMapping
-    public ResponseEntity<List<TechnicalContextDTO>> getAllContexts() {
+    public ResponseEntity<List<TechnicalContextDTO>> getAllTechnicalContexts() {
         return ResponseEntity.ok(contextService.getAllContexts());
     }
 
@@ -40,7 +41,7 @@ public class TechnicalContextController {
             @ApiResponse(responseCode = "404", description = "해당 ID의 기술적 상황을 찾을 수 없음")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<TechnicalContextDTO> getContextById(@PathVariable Long id) {
+    public ResponseEntity<TechnicalContextDTO> getTechnicalContextById(@PathVariable Long id) {
         Optional<TechnicalContextDTO> context = contextService.getContextById(id);
         return context.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -52,8 +53,8 @@ public class TechnicalContextController {
                             schema = @Schema(implementation = TechnicalContextDTO.class)))
     })
     @PostMapping
-    public ResponseEntity<TechnicalContextDTO> createContext(
-            @RequestBody TechnicalContextDTO contextDTO) {
+    public ResponseEntity<TechnicalContextDTO> createTechnicalContext(
+            @RequestBody TechnicalContextCreateDTO contextDTO) {
         TechnicalContext context = new TechnicalContext();
         context.setName(contextDTO.getName());
         context.setDescription(contextDTO.getDescription());
@@ -67,7 +68,7 @@ public class TechnicalContextController {
                             schema = @Schema(implementation = TechnicalContextDTO.class)))
     })
     @PutMapping("/{id}")
-    public ResponseEntity<TechnicalContextDTO> updateContext(
+    public ResponseEntity<TechnicalContextDTO> updateTechnicalContext(
             @PathVariable Long id,
             @RequestBody TechnicalContextDTO contextDTO) {
         TechnicalContext context = new TechnicalContext();
@@ -81,7 +82,7 @@ public class TechnicalContextController {
             @ApiResponse(responseCode = "204", description = "성공적으로 삭제됨")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteContext(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTechnicalContext(@PathVariable Long id) {
         contextService.deleteContext(id);
         return ResponseEntity.noContent().build();
     }

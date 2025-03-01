@@ -42,8 +42,8 @@ public class TechnicalContextDecisionService {
 
     // 새로운 관계 추가
     public TechnicalContextDecisionDTO addRelationship(Long technicalContextId, Long technicalDecisionId) {
-        TechnicalContext technicalContext = technicalContextRepository.getReferenceById(technicalContextId);
-        TechnicalDecision technicalDecision = technicalDecisionRepository.getReferenceById(technicalDecisionId);
+        TechnicalContext technicalContext = technicalContextRepository.findById(technicalContextId).orElseGet(()->null);
+        TechnicalDecision technicalDecision = technicalDecisionRepository.findById(technicalContextId).orElseGet(()->null);
         TechnicalContextDecision technicalContextDecision = TechnicalContextDecision.builder()
                 .technicalContext(technicalContext)
                 .technicalDecision(technicalDecision)

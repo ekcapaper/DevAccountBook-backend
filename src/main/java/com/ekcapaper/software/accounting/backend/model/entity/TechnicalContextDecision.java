@@ -16,10 +16,10 @@ public class TechnicalContextDecision {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "technical_context_id")
+    @JoinColumn(name = "technical_context_id", nullable = false) // ✅ 수정된 부분
     private TechnicalContext technicalContext;
 
     @OneToOne
-    @JoinColumn(name = "technical_decision_id")
+    @JoinColumn(name = "technical_decision_id", nullable = false) // ✅ 수정된 부분
     private TechnicalDecision technicalDecision;
 }
