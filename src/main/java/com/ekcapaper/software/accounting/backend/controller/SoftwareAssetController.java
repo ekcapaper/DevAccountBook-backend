@@ -2,6 +2,9 @@ package com.ekcapaper.software.accounting.backend.controller;
 
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionDTO;
+import com.ekcapaper.software.accounting.backend.model.entity.TechnicalDecision;
 import com.ekcapaper.software.accounting.backend.service.SoftwareAssetService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -68,5 +71,18 @@ public class SoftwareAssetController {
     public ResponseEntity<Void> deleteAsset(@PathVariable Long id) {
         assetService.deleteAsset(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "소프트웨어 자산 수정", description = "소프트웨어 자산을 수정합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 수정됨",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = SoftwareAssetDTO.class)))
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<SoftwareAssetDTO> updateDecision(
+            @PathVariable Long id,
+            @RequestBody SoftwareAssetCreateDTO assetDTO) {
+        return ResponseEntity.ok(assetService.updateAsset(id, assetDTO));
     }
 }

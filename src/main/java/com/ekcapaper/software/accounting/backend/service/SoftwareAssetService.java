@@ -2,10 +2,13 @@ package com.ekcapaper.software.accounting.backend.service;
 
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareAsset;
+import com.ekcapaper.software.accounting.backend.model.entity.TechnicalContext;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareAssetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +44,16 @@ public class SoftwareAssetService {
 
     public void deleteAsset(Long id) {
         assetRepository.deleteById(id);
+    }
+
+    @Transactional
+    public SoftwareAssetDTO updateAsset(Long id, SoftwareAssetCreateDTO assetDTO) {
+        return assetRepository.findById(id)
+                .map(softwareAsset -> {
+                    softwareAsset.setName(assetDTO.getName());
+                    softwareAsset.setDescription(assetDTO.getDescription());
+                    return new SoftwareAssetDTO(softwareAsset.getId(), softwareAsset.getName(), softwareAsset.getDescription());
+                })
+                .orElseThrow(() -> new RuntimeException("Technical Context not found"));
     }
 }

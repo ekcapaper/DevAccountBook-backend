@@ -1,5 +1,7 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareEquityService;
@@ -10,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -66,5 +69,16 @@ public class SoftwareEquityController {
     public ResponseEntity<Void> deleteEquity(@PathVariable Long id) {
         equityService.deleteEquity(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    public SoftwareAssetDTO updateContext(Long id, SoftwareAssetCreateDTO assetDTO) {
+        return assetRepository.findById(id)
+                .map(softwareAsset -> {
+                    softwareAsset.setName(assetDTO.getName());
+                    softwareAsset.setDescription(assetDTO.getDescription());
+                    return new SoftwareAssetDTO(softwareAsset.getId(), softwareAsset.getName(), softwareAsset.getDescription());
+                })
+                .orElseThrow(() -> new RuntimeException("Technical Context not found"));
     }
 }
