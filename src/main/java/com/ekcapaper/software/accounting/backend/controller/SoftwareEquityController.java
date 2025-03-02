@@ -71,14 +71,16 @@ public class SoftwareEquityController {
         return ResponseEntity.noContent().build();
     }
 
-    @Transactional
-    public SoftwareAssetDTO updateContext(Long id, SoftwareAssetCreateDTO assetDTO) {
-        return assetRepository.findById(id)
-                .map(softwareAsset -> {
-                    softwareAsset.setName(assetDTO.getName());
-                    softwareAsset.setDescription(assetDTO.getDescription());
-                    return new SoftwareAssetDTO(softwareAsset.getId(), softwareAsset.getName(), softwareAsset.getDescription());
-                })
-                .orElseThrow(() -> new RuntimeException("Technical Context not found"));
+    @Operation(summary = "소프트웨어 핵심 기술 수정", description = "소프트웨어 핵심 기술을 수정합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 수정됨",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = SoftwareEquityDTO.class)))
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<SoftwareEquityDTO> updateDecision(
+            @PathVariable Long id,
+            @RequestBody SoftwareEquityCreateDTO equityCreateDTO) {
+        return ResponseEntity.ok(equityService.updateEquity(id, equityCreateDTO));
     }
 }

@@ -1,11 +1,14 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareLiability;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareLiabilityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +43,16 @@ public class SoftwareLiabilityService {
 
     public void deleteLiability(Long id) {
         liabilityRepository.deleteById(id);
+    }
+
+    @Transactional
+    public SoftwareLiabilityDTO updateEquity(Long id, SoftwareLiabilityCreateDTO liabilityDTO) {
+        return liabilityRepository.findById(id)
+                .map(softwareLiability -> {
+                    softwareLiability.setName(liabilityDTO.getName());
+                    softwareLiability.setDescription(liabilityDTO.getDescription());
+                    return new SoftwareLiabilityDTO(softwareLiability.getId(), softwareLiability.getName(), softwareLiability.getDescription());
+                })
+                .orElseThrow(() -> new RuntimeException("Technical Context not found"));
     }
 }
