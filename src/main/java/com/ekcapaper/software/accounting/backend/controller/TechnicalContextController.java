@@ -70,7 +70,7 @@ public class TechnicalContextController {
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalContextDTO> updateTechnicalContext(
             @PathVariable Long id,
-            @RequestBody TechnicalContextDTO contextDTO) {
+            @RequestBody TechnicalContextCreateDTO contextDTO) {
         TechnicalContext context = new TechnicalContext();
         context.setName(contextDTO.getName());
         context.setDescription(contextDTO.getDescription());

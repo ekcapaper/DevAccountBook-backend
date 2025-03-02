@@ -71,7 +71,7 @@ public class TechnicalDecisionController {
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalDecisionDTO> updateDecision(
             @PathVariable Long id,
-            @RequestBody TechnicalDecisionDTO decisionDTO) {
+            @RequestBody TechnicalDecisionCreateDTO decisionDTO) {
         TechnicalDecision decision = new TechnicalDecision();
         decision.setName(decisionDTO.getName());
         decision.setDescription(decisionDTO.getDescription());
