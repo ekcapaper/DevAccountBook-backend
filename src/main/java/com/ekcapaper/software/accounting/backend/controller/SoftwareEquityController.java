@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/equities")
+@RequestMapping("/api/software/equities")
 @RequiredArgsConstructor
 public class SoftwareEquityController {
     private final SoftwareEquityService equityService;
@@ -78,7 +78,7 @@ public class SoftwareEquityController {
                             schema = @Schema(implementation = SoftwareEquityDTO.class)))
     })
     @PutMapping("/{id}")
-    public ResponseEntity<SoftwareEquityDTO> updateDecision(
+    public ResponseEntity<SoftwareEquityDTO> updateEquity(
             @PathVariable Long id,
             @RequestBody SoftwareEquityCreateDTO equityCreateDTO) {
         return ResponseEntity.ok(equityService.updateEquity(id, equityCreateDTO));

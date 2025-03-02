@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/assets")
+@RequestMapping("/api/software/assets")
 @RequiredArgsConstructor
 public class SoftwareAssetController {
 
@@ -80,7 +80,7 @@ public class SoftwareAssetController {
                             schema = @Schema(implementation = SoftwareAssetDTO.class)))
     })
     @PutMapping("/{id}")
-    public ResponseEntity<SoftwareAssetDTO> updateDecision(
+    public ResponseEntity<SoftwareAssetDTO> updateAsset(
             @PathVariable Long id,
             @RequestBody SoftwareAssetCreateDTO assetDTO) {
         return ResponseEntity.ok(assetService.updateAsset(id, assetDTO));

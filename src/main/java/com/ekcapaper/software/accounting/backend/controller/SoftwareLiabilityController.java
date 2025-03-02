@@ -1,5 +1,7 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareLiabilityService;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/liabilities")
+@RequestMapping("/api/software/liabilities")
 @RequiredArgsConstructor
 public class SoftwareLiabilityController {
 
@@ -67,5 +69,18 @@ public class SoftwareLiabilityController {
     public ResponseEntity<Void> deleteLiability(@PathVariable Long id) {
         liabilityService.deleteLiability(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "소프트웨어 부채 수정", description = "소프트웨어 부채를 수정합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "성공적으로 수정됨",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = SoftwareEquityDTO.class)))
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<SoftwareLiabilityDTO> updateLiability(
+            @PathVariable Long id,
+            @RequestBody SoftwareLiabilityCreateDTO equityCreateDTO) {
+        return ResponseEntity.ok(liabilityService.updateEquity(id, equityCreateDTO));
     }
 }
