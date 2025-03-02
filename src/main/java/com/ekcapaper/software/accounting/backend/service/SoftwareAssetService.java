@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareAsset;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareAssetRepository;
@@ -29,7 +30,7 @@ public class SoftwareAssetService {
                 .map(asset -> new SoftwareAssetDTO(asset.getId(), asset.getName(), asset.getDescription()));
     }
 
-    public SoftwareAssetDTO createAsset(SoftwareAssetDTO assetDTO) {
+    public SoftwareAssetDTO createAsset(SoftwareAssetCreateDTO assetDTO) {
         SoftwareAsset asset = new SoftwareAsset();
         asset.setName(assetDTO.getName());
         asset.setDescription(assetDTO.getDescription());

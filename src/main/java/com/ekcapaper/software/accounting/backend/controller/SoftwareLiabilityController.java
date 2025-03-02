@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareLiabilityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,7 +54,7 @@ public class SoftwareLiabilityController {
     })
     @PostMapping
     public ResponseEntity<SoftwareLiabilityDTO> createLiability(
-            @RequestBody SoftwareLiabilityDTO liabilityDTO) {
+            @RequestBody SoftwareLiabilityCreateDTO liabilityDTO) {
         return ResponseEntity.ok(liabilityService.createLiability(liabilityDTO));
     }
 

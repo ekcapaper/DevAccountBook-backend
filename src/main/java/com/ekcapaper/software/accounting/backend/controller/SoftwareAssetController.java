@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareAssetService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -54,7 +55,7 @@ public class SoftwareAssetController {
     })
     @PostMapping
     public ResponseEntity<SoftwareAssetDTO> createAsset(
-            @RequestBody SoftwareAssetDTO assetDTO) {
+            @RequestBody SoftwareAssetCreateDTO assetDTO) {
         return ResponseEntity.ok(assetService.createAsset(assetDTO));
     }
 

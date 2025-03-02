@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareEquity;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareEquityRepository;
@@ -28,7 +29,7 @@ public class SoftwareEquityService {
                 .map(equity -> new SoftwareEquityDTO(equity.getId(), equity.getName(), equity.getDescription()));
     }
 
-    public SoftwareEquityDTO createEquity(SoftwareEquityDTO equityDTO) {
+    public SoftwareEquityDTO createEquity(SoftwareEquityCreateDTO equityDTO) {
         SoftwareEquity equity = new SoftwareEquity();
         equity.setName(equityDTO.getName());
         equity.setDescription(equityDTO.getDescription());

@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareLiability;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareLiabilityRepository;
@@ -28,7 +29,7 @@ public class SoftwareLiabilityService {
                 .map(liability -> new SoftwareLiabilityDTO(liability.getId(), liability.getName(), liability.getDescription()));
     }
 
-    public SoftwareLiabilityDTO createLiability(SoftwareLiabilityDTO liabilityDTO) {
+    public SoftwareLiabilityDTO createLiability(SoftwareLiabilityCreateDTO liabilityDTO) {
         SoftwareLiability liability = new SoftwareLiability();
         liability.setName(liabilityDTO.getName());
         liability.setDescription(liabilityDTO.getDescription());

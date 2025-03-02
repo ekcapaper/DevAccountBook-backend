@@ -1,5 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareEquityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,7 +53,7 @@ public class SoftwareEquityController {
     })
     @PostMapping
     public ResponseEntity<SoftwareEquityDTO> createEquity(
-            @RequestBody SoftwareEquityDTO equityDTO) {
+            @RequestBody SoftwareEquityCreateDTO equityDTO) {
         return ResponseEntity.ok(equityService.createEquity(equityDTO));
     }
 
