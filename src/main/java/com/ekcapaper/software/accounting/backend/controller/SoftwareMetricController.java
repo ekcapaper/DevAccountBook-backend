@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/software/metric")
+@RequestMapping("/api/software/metrics")
 @RequiredArgsConstructor
 public class SoftwareMetricController {
 
