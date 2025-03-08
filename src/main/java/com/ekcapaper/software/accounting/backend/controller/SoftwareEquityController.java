@@ -1,8 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareEquityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,7 +53,7 @@ public class SoftwareEquityController {
     })
     @PostMapping
     public ResponseEntity<SoftwareEquityDTO> createEquity(
-            @RequestBody SoftwareEquityCreateDTO equityDTO) {
+            @RequestBody SoftwareEquityCreateUpdateDTO equityDTO) {
         return ResponseEntity.ok(equityService.createEquity(equityDTO));
     }
 
@@ -80,7 +77,7 @@ public class SoftwareEquityController {
     @PutMapping("/{id}")
     public ResponseEntity<SoftwareEquityDTO> updateEquity(
             @PathVariable Long id,
-            @RequestBody SoftwareEquityCreateDTO equityCreateDTO) {
+            @RequestBody SoftwareEquityCreateUpdateDTO equityCreateDTO) {
         return ResponseEntity.ok(equityService.updateEquity(id, equityCreateDTO));
     }
 }

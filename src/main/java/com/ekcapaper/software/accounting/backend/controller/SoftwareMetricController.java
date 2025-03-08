@@ -54,9 +54,9 @@ public class SoftwareMetricController {
     })
     @PostMapping
     public ResponseEntity<SoftwareMetricDTO> createProjectMetric(
-            @RequestBody SoftwareMetricCreateDTO softwareMetricCreateDTO
+            @RequestBody SoftwareMetricCreateUpdateDTO softwareMetricCreateUpdateDTO
     ) {
-        return ResponseEntity.ok(softwareMetricService.createProjectMetricDTO(softwareMetricCreateDTO));
+        return ResponseEntity.ok(softwareMetricService.createProjectMetricDTO(softwareMetricCreateUpdateDTO));
     }
 
     @Operation(summary = "지표 삭제", description = "주어진 ID에 해당하는 지표를 삭제합니다.")
@@ -79,7 +79,7 @@ public class SoftwareMetricController {
     @PutMapping("/{id}")
     public ResponseEntity<SoftwareMetricDTO> updateAsset(
             @PathVariable Long id,
-            @RequestBody SoftwareMetricCreateDTO softwareMetricCreateDTO) {
-        return ResponseEntity.ok(softwareMetricService.updateAsset(id, softwareMetricCreateDTO));
+            @RequestBody SoftwareMetricCreateUpdateDTO softwareMetricCreateUpdateDTO) {
+        return ResponseEntity.ok(softwareMetricService.updateAsset(id, softwareMetricCreateUpdateDTO));
     }
 }

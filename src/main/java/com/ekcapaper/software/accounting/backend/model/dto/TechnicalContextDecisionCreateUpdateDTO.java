@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TechnicalContextCreateDTO {
-    private String name;
-    private String description;
+public class TechnicalContextDecisionCreateUpdateDTO {
+    Long technicalContextId;
+    Long technicalDecisionId;
 }

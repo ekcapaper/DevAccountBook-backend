@@ -1,8 +1,6 @@
 package com.ekcapaper.software.accounting.backend.service;
 
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareLiability;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareLiabilityRepository;
@@ -32,7 +30,7 @@ public class SoftwareLiabilityService {
                 .map(liability -> new SoftwareLiabilityDTO(liability.getId(), liability.getName(), liability.getDescription()));
     }
 
-    public SoftwareLiabilityDTO createLiability(SoftwareLiabilityCreateDTO liabilityDTO) {
+    public SoftwareLiabilityDTO createLiability(SoftwareLiabilityCreateUpdateDTO liabilityDTO) {
         SoftwareLiability liability = new SoftwareLiability();
         liability.setName(liabilityDTO.getName());
         liability.setDescription(liabilityDTO.getDescription());
@@ -46,7 +44,7 @@ public class SoftwareLiabilityService {
     }
 
     @Transactional
-    public SoftwareLiabilityDTO updateEquity(Long id, SoftwareLiabilityCreateDTO liabilityDTO) {
+    public SoftwareLiabilityDTO updateEquity(Long id, SoftwareLiabilityCreateUpdateDTO liabilityDTO) {
         return liabilityRepository.findById(id)
                 .map(softwareLiability -> {
                     softwareLiability.setName(liabilityDTO.getName());

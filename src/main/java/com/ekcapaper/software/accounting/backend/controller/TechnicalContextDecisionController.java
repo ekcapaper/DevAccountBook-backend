@@ -1,6 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
-import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDecisionCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDecisionCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDecisionDTO;
 import com.ekcapaper.software.accounting.backend.service.TechnicalContextDecisionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,10 +53,10 @@ public class TechnicalContextDecisionController {
     })
     @PostMapping
     public ResponseEntity<TechnicalContextDecisionDTO> addRelationship(
-            @RequestBody TechnicalContextDecisionCreateDTO technicalContextDecisionCreateDTO) {
+            @RequestBody TechnicalContextDecisionCreateUpdateDTO technicalContextDecisionCreateUpdateDTO) {
         return ResponseEntity.ok(technicalContextDecisionService.addRelationship(
-                technicalContextDecisionCreateDTO.getTechnicalContextId(),
-                technicalContextDecisionCreateDTO.getTechnicalDecisionId()
+                technicalContextDecisionCreateUpdateDTO.getTechnicalContextId(),
+                technicalContextDecisionCreateUpdateDTO.getTechnicalDecisionId()
                 )
         );
     }

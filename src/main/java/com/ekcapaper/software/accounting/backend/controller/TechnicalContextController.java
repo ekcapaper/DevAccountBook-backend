@@ -1,6 +1,6 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
-import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.TechnicalContext;
 import com.ekcapaper.software.accounting.backend.service.TechnicalContextService;
@@ -54,7 +54,7 @@ public class TechnicalContextController {
     })
     @PostMapping
     public ResponseEntity<TechnicalContextDTO> createTechnicalContext(
-            @RequestBody TechnicalContextCreateDTO contextDTO) {
+            @RequestBody TechnicalContextCreateUpdateDTO contextDTO) {
         TechnicalContext context = new TechnicalContext();
         context.setName(contextDTO.getName());
         context.setDescription(contextDTO.getDescription());
@@ -70,7 +70,7 @@ public class TechnicalContextController {
     @PutMapping("/{id}")
     public ResponseEntity<TechnicalContextDTO> updateTechnicalContext(
             @PathVariable Long id,
-            @RequestBody TechnicalContextCreateDTO contextDTO) {
+            @RequestBody TechnicalContextCreateUpdateDTO contextDTO) {
         TechnicalContext context = new TechnicalContext();
         context.setName(contextDTO.getName());
         context.setDescription(contextDTO.getDescription());

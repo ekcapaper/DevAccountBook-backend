@@ -1,10 +1,7 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionCreateDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.TechnicalDecisionDTO;
-import com.ekcapaper.software.accounting.backend.model.entity.TechnicalDecision;
 import com.ekcapaper.software.accounting.backend.service.SoftwareAssetService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -58,7 +55,7 @@ public class SoftwareAssetController {
     })
     @PostMapping
     public ResponseEntity<SoftwareAssetDTO> createAsset(
-            @RequestBody SoftwareAssetCreateDTO assetDTO) {
+            @RequestBody SoftwareAssetCreateUpdateDTO assetDTO) {
         return ResponseEntity.ok(assetService.createAsset(assetDTO));
     }
 
@@ -82,7 +79,7 @@ public class SoftwareAssetController {
     @PutMapping("/{id}")
     public ResponseEntity<SoftwareAssetDTO> updateAsset(
             @PathVariable Long id,
-            @RequestBody SoftwareAssetCreateDTO assetDTO) {
+            @RequestBody SoftwareAssetCreateUpdateDTO assetDTO) {
         return ResponseEntity.ok(assetService.updateAsset(id, assetDTO));
     }
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SoftwareLiabilityCreateDTO {
+public class SoftwareLiabilityCreateUpdateDTO {
     private String name;
     private String description;
 }

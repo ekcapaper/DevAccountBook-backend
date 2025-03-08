@@ -1,10 +1,8 @@
 package com.ekcapaper.software.accounting.backend.service;
 
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareAssetDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.TechnicalContextDTO;
 import com.ekcapaper.software.accounting.backend.model.entity.SoftwareAsset;
-import com.ekcapaper.software.accounting.backend.model.entity.TechnicalContext;
 import com.ekcapaper.software.accounting.backend.repository.SoftwareAssetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,7 +31,7 @@ public class SoftwareAssetService {
                 .map(asset -> new SoftwareAssetDTO(asset.getId(), asset.getName(), asset.getDescription()));
     }
 
-    public SoftwareAssetDTO createAsset(SoftwareAssetCreateDTO assetDTO) {
+    public SoftwareAssetDTO createAsset(SoftwareAssetCreateUpdateDTO assetDTO) {
         SoftwareAsset asset = new SoftwareAsset();
         asset.setName(assetDTO.getName());
         asset.setDescription(assetDTO.getDescription());
@@ -47,7 +45,7 @@ public class SoftwareAssetService {
     }
 
     @Transactional
-    public SoftwareAssetDTO updateAsset(Long id, SoftwareAssetCreateDTO assetDTO) {
+    public SoftwareAssetDTO updateAsset(Long id, SoftwareAssetCreateUpdateDTO assetDTO) {
         return assetRepository.findById(id)
                 .map(softwareAsset -> {
                     softwareAsset.setName(assetDTO.getName());

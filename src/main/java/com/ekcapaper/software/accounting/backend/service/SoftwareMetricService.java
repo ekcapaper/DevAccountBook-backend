@@ -30,10 +30,10 @@ public class SoftwareMetricService {
                 .map(softwareMetric -> new SoftwareMetricDTO(softwareMetric.getId(), softwareMetric.getName(), softwareMetric.getDescription()));
     }
 
-    public SoftwareMetricDTO createProjectMetricDTO(SoftwareMetricCreateDTO softwareMetricCreateDTO) {
+    public SoftwareMetricDTO createProjectMetricDTO(SoftwareMetricCreateUpdateDTO softwareMetricCreateUpdateDTO) {
         SoftwareMetric softwareMetric = new SoftwareMetric();
-        softwareMetric.setName(softwareMetricCreateDTO.getName());
-        softwareMetric.setDescription(softwareMetricCreateDTO.getDescription());
+        softwareMetric.setName(softwareMetricCreateUpdateDTO.getName());
+        softwareMetric.setDescription(softwareMetricCreateUpdateDTO.getDescription());
         SoftwareMetric savedSoftwareMetric = softwareMetricRepository.save(softwareMetric);
         return new SoftwareMetricDTO(savedSoftwareMetric.getId(), savedSoftwareMetric.getName(), savedSoftwareMetric.getDescription());
     }
@@ -43,11 +43,11 @@ public class SoftwareMetricService {
     }
 
     @Transactional
-    public SoftwareMetricDTO updateAsset(Long id, SoftwareMetricCreateDTO softwareMetricCreateDTO) {
+    public SoftwareMetricDTO updateAsset(Long id, SoftwareMetricCreateUpdateDTO softwareMetricCreateUpdateDTO) {
         return softwareMetricRepository.findById(id)
                 .map(softwareMetric -> {
-                    softwareMetric.setName(softwareMetricCreateDTO.getName());
-                    softwareMetric.setDescription(softwareMetricCreateDTO.getDescription());
+                    softwareMetric.setName(softwareMetricCreateUpdateDTO.getName());
+                    softwareMetric.setDescription(softwareMetricCreateUpdateDTO.getDescription());
                     return new SoftwareMetricDTO(softwareMetric.getId(), softwareMetric.getName(), softwareMetric.getDescription());
                 })
                 .orElseThrow(() -> new RuntimeException("Technical Context not found"));

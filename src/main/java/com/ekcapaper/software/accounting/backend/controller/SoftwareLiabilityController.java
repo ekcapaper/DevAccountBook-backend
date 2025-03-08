@@ -1,8 +1,7 @@
 package com.ekcapaper.software.accounting.backend.controller;
 
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityCreateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareEquityDTO;
-import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateDTO;
+import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityCreateUpdateDTO;
 import com.ekcapaper.software.accounting.backend.model.dto.SoftwareLiabilityDTO;
 import com.ekcapaper.software.accounting.backend.service.SoftwareLiabilityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -56,7 +55,7 @@ public class SoftwareLiabilityController {
     })
     @PostMapping
     public ResponseEntity<SoftwareLiabilityDTO> createLiability(
-            @RequestBody SoftwareLiabilityCreateDTO liabilityDTO) {
+            @RequestBody SoftwareLiabilityCreateUpdateDTO liabilityDTO) {
         return ResponseEntity.ok(liabilityService.createLiability(liabilityDTO));
     }
 
@@ -80,7 +79,7 @@ public class SoftwareLiabilityController {
     @PutMapping("/{id}")
     public ResponseEntity<SoftwareLiabilityDTO> updateLiability(
             @PathVariable Long id,
-            @RequestBody SoftwareLiabilityCreateDTO equityCreateDTO) {
+            @RequestBody SoftwareLiabilityCreateUpdateDTO equityCreateDTO) {
         return ResponseEntity.ok(liabilityService.updateEquity(id, equityCreateDTO));
     }
 }
