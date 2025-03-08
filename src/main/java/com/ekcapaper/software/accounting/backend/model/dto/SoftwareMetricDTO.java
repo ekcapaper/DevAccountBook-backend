@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectMetricDTO {
+public class SoftwareMetricDTO {
     private Long id;
     private String name;
     private String description;
